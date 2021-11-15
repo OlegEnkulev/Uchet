@@ -86,12 +86,12 @@ namespace Uchet.Pages
                     border[i].Margin = new Thickness(5);
                     border[i].Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#3d3549");
                     border[i].Width = 500;
-                    border[i].Height = 50;
                     border[i].CornerRadius = new CornerRadius(10);
                     border[i].BorderThickness = new Thickness(2);
                     border[i].BorderBrush = Brushes.White;
+                    border[i].Child = stackPanel[i];
 
-                    NewsSP.Children.Add(border[i]);
+                    NewsSP.Children.Insert(0, border[i]);
                 }
                 else
                     i--;

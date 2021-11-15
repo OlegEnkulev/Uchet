@@ -24,13 +24,13 @@ namespace Uchet.Resources
             switch (currentUser.Role)
             {
                 case 0:
-                    Core.mainWindow.SecondFrame.Navigate(new StudentPage());
+                    mainWindow.SecondFrame.Navigate(new AdminPage());
                     break;
                 case 1:
-                    Core.mainWindow.SecondFrame.Navigate(new TeacherPage());
+                    mainWindow.SecondFrame.Navigate(new TeacherPage());
                     break;
                 case 2:
-                    Core.mainWindow.SecondFrame.Navigate(new AdminPage());
+                    mainWindow.SecondFrame.Navigate(new StudentPage());
                     break;
             }
         }
@@ -39,8 +39,8 @@ namespace Uchet.Resources
         {
             currentUser = null;
 
-            Core.mainWindow.MainFrame.Navigate(new NewsPage());
-            Core.mainWindow.SecondFrame.Navigate(new LoginPage());
+            mainWindow.MainFrame.Navigate(new NewsPage());
+            mainWindow.SecondFrame.Navigate(new LoginPage());
         }
     }
 }
