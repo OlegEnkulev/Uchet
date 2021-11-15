@@ -8,12 +8,8 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StudentPage" FontFamily="Century Gothic" FontSize="14">
 
-    <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel>
-            <Button Content="МДК 05.01" Margin="5" x:Name="UserControlBTN" Click="NewsControlBTN_Click"/>
-            <Button Content="МДК 05.02" Margin="5" x:Name="NewsControlBTN" Click="NewsControlBTN_Click"/>
-            <Button Content="МДК 06.01" Margin="5" x:Name="GradesControlBTN" Click="NewsControlBTN_Click"/>
-            <Button Content="Выход" Margin="5" x:Name="ExitBTN" Click="ExitBTN_Click"/>
+    <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
+        <StackPanel HorizontalAlignment="Stretch" x:Name="SubjectSP">
         </StackPanel>
     </Border>
 </Page>

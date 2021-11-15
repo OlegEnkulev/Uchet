@@ -9,11 +9,10 @@
       Title="TeacherPage" FontFamily="Century Gothic" FontSize="14">
 
     <Grid>
-        <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
             <StackPanel>
-                <Button Content="МДК 05.01" Margin="5" x:Name="UserControlBTN" Click="NewsControlBTN_Click"/>
-                <Button Content="МДК 05.02" Margin="5" x:Name="NewsControlBTN" Click="NewsControlBTN_Click"/>
-                <Button Content="Ввести новый предмет" Margin="5" x:Name="GradesControlBTN" Click="GradesControlBTN_Click"/>
+                <Button Content="МДК 05.01" Margin="5" x:Name="UserControlBTN"/>
+                <Button Content="Ввести новый предмет" Margin="5" x:Name="NewSubjectBTN" Click="NewSubjectBTN_Click"/>
                 <Button Content="Выход" Margin="5" x:Name="ExitBTN" Click="ExitBTN_Click"/>
             </StackPanel>
         </Border>

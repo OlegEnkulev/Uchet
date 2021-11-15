@@ -7,16 +7,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LoginPage" FontFamily="Century Gothic" FontSize="14">
-    <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel>
+    <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
+        <StackPanel HorizontalAlignment="Center">
             <Label Content="Вход" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White"/>
             <StackPanel Orientation="Horizontal">
                 <Label Foreground="White" Width="70" Content="Логин:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
-                <TextBox Width="130" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
+                <TextBox x:Name="LoginBox" Width="130" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Foreground="White" Width="70" Content="Пароль:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5"/>
-                <PasswordBox Width="130" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5"/>
+                <PasswordBox x:Name="PasswordBox" Width="130" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5"/>
             </StackPanel>
             <Button Content="Войти" Margin="5" x:Name="LoginBTN" Click="LoginBTN_Click"/>
         </StackPanel>

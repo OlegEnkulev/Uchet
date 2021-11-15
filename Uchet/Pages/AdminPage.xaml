@@ -8,14 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminPage" FontFamily="Century Gothic" FontSize="14">
 
-    <Grid>
-        <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel>
-                <Button Content="Управление пользователями" Margin="5" x:Name="UserControlBTN" Click="UserControlBTN_Click"/>
-                <Button Content="Управление новостями" Margin="5" x:Name="NewsControlBTN" Click="NewsControlBTN_Click"/>
-                <Button Content="Управление оценками" Margin="5" x:Name="GradesControlBTN" Click="GradesControlBTN_Click"/>
-                <Button Content="Выход" Margin="5" x:Name="ExitBTN" Click="ExitBTN_Click"/>
-            </StackPanel>
-        </Border>
-    </Grid>
+    <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
+        <StackPanel>
+            <Button Content="Управление пользователями" Margin="5" x:Name="UserControlBTN" Click="UserControlBTN_Click"/>
+            <Button Content="Управление новостями" Margin="5" x:Name="NewsControlBTN" Click="NewsControlBTN_Click"/>
+            <Button Content="Выход" Margin="5" x:Name="ExitBTN" Click="ExitBTN_Click"/>
+        </StackPanel>
+    </Border>
 </Page>

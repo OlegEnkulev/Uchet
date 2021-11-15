@@ -26,8 +26,29 @@ namespace Uchet.Pages
 
         private void LoginBTN_Click(object sender, RoutedEventArgs e)
         {
-            SelectRoleWindow window = new SelectRoleWindow();
-            window.Show();
+            if(LoginBox.Text.Length < 4 || PasswordBox.Password.Length < 4)
+            {
+                MessageBox.Show("Не введены данные");
+                return;
+            }
+
+            if(Core.DB.Users.Where(s => s.Login == LoginBox.Text).FirstOrDefault() == null)
+            {
+                MessageBox.Show("Данного пользователя не существует");
+                return;
+            }
+
+            Users user = Core.DB.Users.Where(s => s.Login == LoginBox.Text).FirstOrDefault();
+
+            if(user.Password != PasswordBox.Password)
+            {
+                MessageBox.Show("Пароль не правильный!");
+                return;
+            }
+
+            Core.currentUser = user;
+
+            Core.OpenUserPage();
         }
     }
 }

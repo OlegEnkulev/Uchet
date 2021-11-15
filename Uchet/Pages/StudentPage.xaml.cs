@@ -17,24 +17,61 @@ using Uchet.Resources;
 
 namespace Uchet.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для StudentPage.xaml
-    /// </summary>
     public partial class StudentPage : Page
     {
+        int subjectCount;
+
+        Button[] subjectButton = new Button[Core.DB.Users.Count()];
+
         public StudentPage()
         {
             InitializeComponent();
+            UpdateUsers();
         }
 
-        private void NewsControlBTN_Click(object sender, RoutedEventArgs e)
+        void UpdateUsers()
         {
-            Core.mainWindow.MainFrame.Navigate(new GradesContolPage());
+            subjectCount = Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count();
+
+            SubjectSP.Children.Clear();
+
+            int iCorrect = 0;
+
+            for (int i = 0; i < subjectCount; i++)
+            {
+                if (Core.DB.Subjects.Where(s => s.Id == iCorrect && s.GroupId == Core.currentUser.GroupID).FirstOrDefault() != null)
+                {
+                    Subjects subject = Core.DB.Subjects.Where(s => s.Id == iCorrect).FirstOrDefault();
+
+                    subjectButton[i] = new Button();
+                    subjectButton[i].Margin = new Thickness(5);
+                    subjectButton[i].Content = subject.Title;
+                    subjectButton[i].Tag = iCorrect;
+                    subjectButton[i].Click += OpenSubjectPage;
+
+                    SubjectSP.Children.Add(subjectButton[i]);
+                }
+                else
+                    i--;
+                iCorrect++;
+            }
+
+            Button exitButton = new Button();
+            exitButton.Margin = new Thickness(5);
+            exitButton.Content = "Выход";
+            exitButton.Click += ExitBTN_Click;
+
+            SubjectSP.Children.Add(exitButton);
+        }
+
+        public void OpenSubjectPage(object sender, EventArgs e)
+        {
+
         }
 
         private void ExitBTN_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Core.ExitUser();
         }
     }
 }

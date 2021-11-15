@@ -12,14 +12,91 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Uchet.Pages;
+using Uchet.Resources;
 
 namespace Uchet.Pages
 {
     public partial class NewsPage : Page
     {
+        Border[] border = new Border[Core.DB.News.Count()];
+        StackPanel[] stackPanel = new StackPanel[Core.DB.News.Count()];
+        Grid[] grid = new Grid[Core.DB.News.Count()];
+        Label[] label = new Label[Core.DB.News.Count()];
+        Label[] label1 = new Label[Core.DB.News.Count()];
+        Border[] border1 = new Border[Core.DB.News.Count()];
+        TextBlock[] textBlock = new TextBlock[Core.DB.News.Count()];
+
         public NewsPage()
         {
             InitializeComponent();
+
+            UpdateUsers();
+        }
+
+        void UpdateUsers()
+        {
+            NewsSP.Children.Clear();
+
+            int iCorrect = 0;
+
+            for (int i = 0; i < Core.DB.News.Count(); i++)
+            {
+                if (Core.DB.News.Where(s => s.Id == iCorrect).FirstOrDefault() != null)
+                {
+                    News news = Core.DB.News.Where(s => s.Id == iCorrect).FirstOrDefault();
+
+                    textBlock[i] = new TextBlock();
+                    textBlock[i].Margin = new Thickness(5);
+                    textBlock[i].Foreground = Brushes.White;
+                    textBlock[i].Text = news.Description;
+
+                    border1[i] = new Border();
+                    border1[i].Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#776993");
+                    border1[i].CornerRadius = new CornerRadius(10);
+                    border1[i].BorderThickness = new Thickness(2);
+                    border1[i].BorderBrush = Brushes.White;
+                    border1[i].Margin = new Thickness(5);
+                    border1[i].Child = textBlock[i];
+
+                    label[i] = new Label();
+                    label[i].FontSize = 20;
+                    label[i].Content = news.Title;
+                    label[i].Foreground = Brushes.White;
+                    label[i].FontWeight = FontWeights.Bold;
+                    label[i].HorizontalAlignment = HorizontalAlignment.Left;
+                    label[i].Width = 350;
+
+                    label1[i] = new Label();
+                    label1[i].FontSize = 20;
+                    label1[i].Content = news.Date.ToString("dd.MM.yyyy");
+                    label1[i].Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#635679");
+                    label1[i].FontWeight = FontWeights.Light;
+                    label1[i].HorizontalAlignment = HorizontalAlignment.Right;
+
+                    grid[i] = new Grid();
+                    grid[i].Children.Add(label[i]);
+                    grid[i].Children.Add(label1[i]);
+
+                    stackPanel[i] = new StackPanel();
+                    stackPanel[i].Children.Add(grid[i]);
+                    stackPanel[i].Children.Add(border1[i]);
+
+                    border[i] = new Border();
+                    border[i].Margin = new Thickness(5);
+                    border[i].Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#3d3549");
+                    border[i].Width = 500;
+                    border[i].Height = 50;
+                    border[i].CornerRadius = new CornerRadius(10);
+                    border[i].BorderThickness = new Thickness(2);
+                    border[i].BorderBrush = Brushes.White;
+
+                    NewsSP.Children.Add(border[i]);
+                }
+                else
+                    i--;
+                iCorrect++;
+            }
         }
     }
 }

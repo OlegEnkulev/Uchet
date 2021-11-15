@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Uchet"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#201c26" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="450" Width="900" Background="#201c26" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70*"/>
-            <ColumnDefinition x:Name="SecondFrameGrid" Width="30*"/>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition x:Name="SecondFrameGrid" Width="35*"/>
         </Grid.ColumnDefinitions>
 
         <Frame Grid.Column="0" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>

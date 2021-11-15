@@ -9,85 +9,8 @@
       Title="NewsPage" FontFamily="Century Gothic" FontSize="14">
 
     <ScrollViewer>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Border Margin="5" Background="#3d3549" Width="500" CornerRadius="10" BorderThickness="2" BorderBrush="White">
-                <StackPanel>
-                    <Grid>
-                        <Label FontSize="20" Content="Заголовок 1" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Width="350"/>
-                        <Label FontSize="20" Content="01.10.2021" Foreground="#635679" FontWeight="Light" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Border Background="#776993" CornerRadius="10" BorderThickness="2" BorderBrush="White" Margin="5">
-                        <TextBlock Foreground="White" Margin="5">
-                        Информация о новости и т.п.
-                        </TextBlock>
-                    </Border>
-                </StackPanel>
-            </Border>
-            <Border Margin="5" Background="#3d3549" Width="500" CornerRadius="10" BorderThickness="2" BorderBrush="White">
-                <StackPanel>
-                    <Grid>
-                        <Label FontSize="20" Content="Заголовок 2" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Width="350"/>
-                        <Label FontSize="20" Content="01.09.2021" Foreground="#635679" FontWeight="Light" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Border Background="#776993" CornerRadius="10" BorderThickness="2" BorderBrush="White" Margin="5">
-                        <TextBlock Foreground="White" Margin="5">
-                        Информация о новости и т.п.
-                        </TextBlock>
-                    </Border>
-                </StackPanel>
-            </Border>
-            <Border Margin="5" Background="#3d3549" Width="500" CornerRadius="10" BorderThickness="2" BorderBrush="White">
-                <StackPanel>
-                    <Grid>
-                        <Label FontSize="20" Content="Заголовок 3" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Width="350"/>
-                        <Label FontSize="20" Content="01.08.2021" Foreground="#635679" FontWeight="Light" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Border Background="#776993" CornerRadius="10" BorderThickness="2" BorderBrush="White" Margin="5">
-                        <TextBlock Foreground="White" Margin="5">
-                        Информация о новости и т.п.
-                        </TextBlock>
-                    </Border>
-                </StackPanel>
-            </Border>
-            <Border Margin="5" Background="#3d3549" Width="500" CornerRadius="10" BorderThickness="2" BorderBrush="White">
-                <StackPanel>
-                    <Grid>
-                        <Label FontSize="20" Content="Заголовок 4" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Width="350"/>
-                        <Label FontSize="20" Content="01.05.2021" Foreground="#635679" FontWeight="Light" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Border Background="#776993" CornerRadius="10" BorderThickness="2" BorderBrush="White" Margin="5">
-                        <TextBlock Foreground="White" Margin="5">
-                        Информация о новости и т.п.
-                        </TextBlock>
-                    </Border>
-                </StackPanel>
-            </Border>
-            <Border Margin="5" Background="#3d3549" Width="500" CornerRadius="10" BorderThickness="2" BorderBrush="White">
-                <StackPanel>
-                    <Grid>
-                        <Label FontSize="20" Content="Заголовок 5" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Width="350"/>
-                        <Label FontSize="20" Content="01.04.2021" Foreground="#635679" FontWeight="Light" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Border Background="#776993" CornerRadius="10" BorderThickness="2" BorderBrush="White" Margin="5">
-                        <TextBlock Foreground="White" Margin="5">
-                        Информация о новости и т.п.
-                        </TextBlock>
-                    </Border>
-                </StackPanel>
-            </Border>
-            <Border Margin="5" Background="#3d3549" Width="500" CornerRadius="10" BorderThickness="2" BorderBrush="White">
-                <StackPanel>
-                    <Grid>
-                        <Label FontSize="20" Content="Заголовок 6" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Width="350"/>
-                        <Label FontSize="20" Content="01.03.2021" Foreground="#635679" FontWeight="Light" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Border Background="#776993" CornerRadius="10" BorderThickness="2" BorderBrush="White" Margin="5">
-                        <TextBlock Foreground="White" Margin="5">
-                        Информация о новости и т.п.
-                        </TextBlock>
-                    </Border>
-                </StackPanel>
-            </Border>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="NewsSP">
+            
         </StackPanel>
     </ScrollViewer>
 </Page>

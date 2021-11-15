@@ -34,14 +34,9 @@ namespace Uchet.Pages
             Core.mainWindow.MainFrame.Navigate(new NewsControlPage());
         }
 
-        private void GradesControlBTN_Click(object sender, RoutedEventArgs e)
-        {
-            Core.mainWindow.MainFrame.Navigate(new GradesContolPage());
-        }
-
         private void ExitBTN_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            Core.ExitUser();
         }
     }
 }
