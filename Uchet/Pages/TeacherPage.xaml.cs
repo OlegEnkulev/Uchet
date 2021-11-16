@@ -19,14 +19,55 @@ namespace Uchet.Pages
 {
     public partial class TeacherPage : Page
     {
+        int subjectCount;
+
+        Button[] subjectButton = new Button[Core.DB.Subjects.Where(s => s.TeacherId == Core.currentUser.Id).Count()];
+
         public TeacherPage()
         {
             InitializeComponent();
+
+            UpdateSubjects();
         }
 
-        private void NewSubjectBTN_Click(object sender, RoutedEventArgs e)
+        void UpdateSubjects()
         {
-            Core.mainWindow.MainFrame.Navigate(new AddNewSubject());
+            subjectCount = Core.DB.Subjects.Where(s => s.TeacherId == Core.currentUser.Id).Count();
+
+            SubjectsSP.Children.Clear();
+
+            int iCorrect = 0;
+
+            for (int i = 0; i < subjectCount; i++)
+            {
+                if (Core.DB.Subjects.Where(s => s.Id == iCorrect && s.TeacherId == Core.currentUser.Id).FirstOrDefault() != null)
+                {
+                    Subjects subject = Core.DB.Subjects.Where(s => s.Id == iCorrect).FirstOrDefault();
+
+                    subjectButton[i] = new Button();
+                    subjectButton[i].Margin = new Thickness(5);
+                    subjectButton[i].Content = subject.Title;
+                    subjectButton[i].Tag = iCorrect;
+                    subjectButton[i].Click += OpenSubjectPage;
+
+                    SubjectsSP.Children.Add(subjectButton[i]);
+                }
+                else
+                    i--;
+                iCorrect++;
+            }
+
+            Button exitButton = new Button();
+            exitButton.Margin = new Thickness(5);
+            exitButton.Content = "Выход";
+            exitButton.Click += ExitBTN_Click;
+
+            SubjectsSP.Children.Add(exitButton);
+        }
+
+        public void OpenSubjectPage(object sender, EventArgs e)
+        {
+
         }
 
         private void ExitBTN_Click(object sender, RoutedEventArgs e)

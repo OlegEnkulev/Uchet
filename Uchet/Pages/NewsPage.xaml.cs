@@ -31,10 +31,10 @@ namespace Uchet.Pages
         {
             InitializeComponent();
 
-            UpdateUsers();
+            UpdateNews();
         }
 
-        void UpdateUsers()
+        void UpdateNews()
         {
             NewsSP.Children.Clear();
 

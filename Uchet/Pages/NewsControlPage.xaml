@@ -9,9 +9,9 @@
       Title="NewsControlPage" FontFamily="Century Gothic" FontSize="14">
 
     <Grid>
-        <StackPanel>
+        <StackPanel HorizontalAlignment="Center">
             <Label Content="Новости:" Foreground="White" HorizontalContentAlignment="Center" Margin="5"/>
-            <ScrollViewer Height="300" Margin="5">
+            <!--<ScrollViewer Height="300" Margin="5">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Border Margin="5" Background="#3d3549" Width="500" CornerRadius="10" BorderThickness="2" BorderBrush="White">
                         <StackPanel>
@@ -128,8 +128,23 @@
                         </StackPanel>
                     </Border>
                 </StackPanel>
-            </ScrollViewer>
-            <Button x:Name="CreateUserBTN" Content="Создать новую новость" Margin="5" Width="250" Click="CreateUserBTN_Click"/>
+            </ScrollViewer>-->
+            <DataGrid x:Name="NewsDataGrid" Height="300" Margin="5" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Width="50" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Заголовок" Width="150" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Описание" Width="*" Binding="{Binding Description}"/>
+                    <DataGridTextColumn Header="Дата" Width="150" Binding="{Binding Date}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="CreateUserBTN" Content="Создать новую новость" Margin="5" Width="250" Click="CreateUserBTN_Click"/>
+                <Button x:Name="RefreshBTN" Content="Обновить" Margin="5" Width="250" Click="RefreshBTN_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="EditBTN" Content="Редактировать" Margin="5" Width="250" Click="EditBTN_Click"/>
+                <Button x:Name="DeleteBTN" Content="Удалить" Margin="5" Width="250" Click="DeleteBTN_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
     

@@ -12,11 +12,12 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
                 <Label Content="Заголовок:" Width="100" Foreground="White"/>
-                <TextBox x:Name="NameBox" Width="180"/>
+                <TextBox x:Name="TitleBox" Width="180"/>
             </StackPanel>
             <Label Content="Текст новости:" HorizontalAlignment="Center" Foreground="White"/>
-            <TextBox x:Name="LastNameBox" Margin="5" Width="400" Height="200"/>
+            <TextBox x:Name="DescriptionBox" Margin="5" Width="400" Height="200"/>
             <Button x:Name="SaveBTN" Content="Сохранить" Margin="5" Width="250" Click="SaveBTN_Click"/>
+            <Button x:Name="ExitBTN" Content="Выйти" Margin="5" Width="250" Click="ExitBTN_Click"/>
         </StackPanel>
     </Grid>
 </Page>

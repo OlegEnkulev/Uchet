@@ -13,7 +13,6 @@
         <AssociationConnector Association="UchetDBModel.FK_Grades_Users" ManuallyRouted="false" />
         <AssociationConnector Association="UchetDBModel.FK_Grades_Users1" ManuallyRouted="false" />
         <AssociationConnector Association="UchetDBModel.FK_Users_Groups" ManuallyRouted="false" />
-        <AssociationConnector Association="UchetDBModel.FK_News_Users" ManuallyRouted="false" />
         <AssociationConnector Association="UchetDBModel.FK_Subjects_Users" ManuallyRouted="false" />
         <AssociationConnector Association="UchetDBModel.FK_Subjects_Groups" />
       </Diagram>

@@ -19,7 +19,6 @@ namespace Uchet.Resources
         {
             this.Grades = new HashSet<Grades>();
             this.Grades1 = new HashSet<Grades>();
-            this.News = new HashSet<News>();
             this.Subjects = new HashSet<Subjects>();
         }
     
@@ -36,8 +35,6 @@ namespace Uchet.Resources
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grades> Grades1 { get; set; }
         public virtual Groups Groups { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<News> News { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subjects> Subjects { get; set; }
     }

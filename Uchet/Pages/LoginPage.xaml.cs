@@ -32,21 +32,13 @@ namespace Uchet.Pages
                 return;
             }
 
-            if(Core.DB.Users.Where(s => s.Login == LoginBox.Text).FirstOrDefault() == null)
+            if(Core.DB.Users.Where(s => s.Login == LoginBox.Text && s.Password == PasswordBox.Password).FirstOrDefault() == null)
             {
-                MessageBox.Show("Данного пользователя не существует");
+                MessageBox.Show("Данные неправильны");
                 return;
             }
 
-            Users user = Core.DB.Users.Where(s => s.Login == LoginBox.Text).FirstOrDefault();
-
-            if(user.Password != PasswordBox.Password)
-            {
-                MessageBox.Show("Пароль не правильный!");
-                return;
-            }
-
-            Core.currentUser = user;
+            Core.currentUser = Core.DB.Users.Where(s => s.Login == LoginBox.Text && s.Password == PasswordBox.Password).FirstOrDefault();
 
             Core.OpenUserPage();
         }

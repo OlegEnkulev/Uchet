@@ -21,15 +21,15 @@ namespace Uchet.Pages
     {
         int subjectCount;
 
-        Button[] subjectButton = new Button[Core.DB.Users.Count()];
+        Button[] subjectButton = new Button[Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count()];
 
         public StudentPage()
         {
             InitializeComponent();
-            UpdateUsers();
+            UpdateSubjects();
         }
 
-        void UpdateUsers()
+        void UpdateSubjects()
         {
             subjectCount = Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count();
 
