@@ -13,7 +13,7 @@
             <ColumnDefinition x:Name="SecondFrameGrid" Width="35*"/>
         </Grid.ColumnDefinitions>
 
-        <Frame Grid.Column="0" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Column="0" x:Name="MainFrame" NavigationUIVisibility="Hidden" />
         <Frame Grid.Column="1" x:Name="SecondFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

@@ -70,14 +70,14 @@
     <Compile Include="Pages\AddNewSubject.xaml.cs">
       <DependentUpon>AddNewSubject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddNewGroup.xaml.cs">
+      <DependentUpon>AddNewGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddNewUser.xaml.cs">
       <DependentUpon>AddNewUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\GradesContolPage.xaml.cs">
-      <DependentUpon>GradesContolPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\NewsControlPage.xaml.cs">
       <DependentUpon>NewsControlPage.xaml</DependentUpon>
@@ -88,8 +88,17 @@
     <Compile Include="Pages\TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\GroupsControlPage.xaml.cs">
+      <DependentUpon>GroupsControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SubjectsControlPage.xaml.cs">
+      <DependentUpon>SubjectsControlPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UserControlPage.xaml.cs">
       <DependentUpon>UserControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserSubjectPage.xaml.cs">
+      <DependentUpon>UserSubjectPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Core.cs" />
     <Compile Include="Resources\Grades.cs">
@@ -145,15 +154,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AddNewGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\AddNewUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AdminPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\GradesContolPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,7 +186,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\GroupsControlPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SubjectsControlPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\UserControlPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UserSubjectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

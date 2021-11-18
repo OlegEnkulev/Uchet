@@ -11,8 +11,8 @@
     <Grid>
         <StackPanel>
             <Label Content="Пользователи:" Foreground="White" HorizontalContentAlignment="Center" Margin="5"/>
-            <ScrollViewer Height="300" Margin="5">
-                <StackPanel x:Name="UsersScrollViewer">
+            <ScrollViewer Height="300" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <!--<StackPanel x:Name="UsersScrollViewer">
 
                     <Border Margin="5" Background="#3d3549" Width="500" CornerRadius="10" BorderThickness="2" BorderBrush="White">
                         <StackPanel>
@@ -82,9 +82,28 @@
                         </StackPanel>
                     </Border>
 
-                </StackPanel>
+                </StackPanel>-->
+
+                <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Width="50" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Имя" Width="100" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header="Фамилия" Width="150" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Логин" Width="150" Binding="{Binding Login}"/>
+                        <DataGridTextColumn Header="Пароль" Width="150" Binding="{Binding Password}"/>
+                        <DataGridTextColumn Header="Роль" Width="90" Binding="{Binding Role}"/>
+                        <DataGridTextColumn Header="Группа" Width="100" Binding="{Binding Groups.Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </ScrollViewer>
-            <Button x:Name="CreateUserBTN" Content="Создать нового пользователя" Margin="5" Width="250" Click="CreateUserBTN_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="CreateUserBTN" Content="Создать нового пользователя" Margin="5" Width="250" Click="CreateUserBTN_Click"/>
+                <Button x:Name="RefreshBTN" Content="Обновить" Margin="5" Width="250" Click="RefreshBTN_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="EditBTN" Content="Редактировать" Margin="5" Width="250" Click="EditBTN_Click"/>
+                <Button x:Name="DeleteBTN" Content="Удалить" Margin="5" Width="250" Click="DeleteBTN_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

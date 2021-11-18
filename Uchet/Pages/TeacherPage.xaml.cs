@@ -46,7 +46,7 @@ namespace Uchet.Pages
 
                     subjectButton[i] = new Button();
                     subjectButton[i].Margin = new Thickness(5);
-                    subjectButton[i].Content = subject.Title;
+                    subjectButton[i].Content = subject.Title + " " + subject.Groups.Name;
                     subjectButton[i].Tag = iCorrect;
                     subjectButton[i].Click += OpenSubjectPage;
 

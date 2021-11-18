@@ -26,52 +26,57 @@ namespace Uchet.Pages
         public StudentPage()
         {
             InitializeComponent();
-            UpdateSubjects();
+            //UpdateSubjects();
         }
 
-        void UpdateSubjects()
-        {
-            subjectCount = Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count();
+        //void UpdateSubjects()
+        //{
+        //    subjectCount = Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count();
 
-            SubjectSP.Children.Clear();
+        //    SubjectSP.Children.Clear();
 
-            int iCorrect = 0;
+        //    int iCorrect = 0;
 
-            for (int i = 0; i < subjectCount; i++)
-            {
-                if (Core.DB.Subjects.Where(s => s.Id == iCorrect && s.GroupId == Core.currentUser.GroupID).FirstOrDefault() != null)
-                {
-                    Subjects subject = Core.DB.Subjects.Where(s => s.Id == iCorrect).FirstOrDefault();
+        //    for (int i = 0; i < subjectCount; i++)
+        //    {
+        //        if (Core.DB.Subjects.Where(s => s.Id == iCorrect && s.GroupId == Core.currentUser.GroupID).FirstOrDefault() != null)
+        //        {
+        //            Subjects subject = Core.DB.Subjects.Where(s => s.Id == iCorrect).FirstOrDefault();
 
-                    subjectButton[i] = new Button();
-                    subjectButton[i].Margin = new Thickness(5);
-                    subjectButton[i].Content = subject.Title;
-                    subjectButton[i].Tag = iCorrect;
-                    subjectButton[i].Click += OpenSubjectPage;
+        //            subjectButton[i] = new Button();
+        //            subjectButton[i].Margin = new Thickness(5);
+        //            subjectButton[i].Content = subject.Title;
+        //            subjectButton[i].Tag = iCorrect;
+        //            subjectButton[i].Click += OpenSubjectPage;
 
-                    SubjectSP.Children.Add(subjectButton[i]);
-                }
-                else
-                    i--;
-                iCorrect++;
-            }
+        //            SubjectSP.Children.Add(subjectButton[i]);
+        //        }
+        //        else
+        //            i--;
+        //        iCorrect++;
+        //    }
 
-            Button exitButton = new Button();
-            exitButton.Margin = new Thickness(5);
-            exitButton.Content = "Выход";
-            exitButton.Click += ExitBTN_Click;
+        //    Button exitButton = new Button();
+        //    exitButton.Margin = new Thickness(5);
+        //    exitButton.Content = "Выход";
+        //    exitButton.Click += ExitBTN_Click;
 
-            SubjectSP.Children.Add(exitButton);
-        }
+        //    SubjectSP.Children.Add(exitButton);
+        //}
 
-        public void OpenSubjectPage(object sender, EventArgs e)
-        {
+        //public void OpenSubjectPage(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void ExitBTN_Click(object sender, RoutedEventArgs e)
         {
             Core.ExitUser();
+        }
+
+        private void ShowGradesBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Core.mainWindow.MainFrame.Navigate(new UserSubjectPage());
         }
     }
 }

@@ -11,7 +11,7 @@
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
             <Label Content="Имя:" Width="100" Foreground="White"/>
-            <TextBox x:Name="NameBox" Width="180" />
+            <TextBox x:Name="FirstNameBox" Width="180" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
             <Label Content="Фамилия:" Width="100" Foreground="White"/>
@@ -23,8 +23,21 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
             <Label Content="Пароль:" Width="100" Foreground="White"/>
-            <PasswordBox x:Name="PasswordBox" Width="180" />
+            <TextBox x:Name="PasswordBox" Width="180" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+            <Label Content="Роль:" Width="100" Foreground="White"/>
+            <ComboBox x:Name="RoleBox" Width="180" HorizontalContentAlignment="Center">
+                <ComboBoxItem Content="Администратор"/>
+                <ComboBoxItem Content="Преподаватель"/>
+                <ComboBoxItem Content="Студент"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+            <Label Content="Группа:" Width="100" Foreground="White"/>
+            <ComboBox x:Name="GroupBox" Width="180"/>
         </StackPanel>
         <Button x:Name="SaveBTN" Content="Сохранить" Margin="5" Width="250" Click="SaveBTN_Click"/>
+        <Button x:Name="ExitBTN" Content="Назад" Margin="5" Width="250" Click="ExitBTN_Click"/>
     </StackPanel>
 </Page>

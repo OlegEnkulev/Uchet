@@ -38,5 +38,15 @@ namespace Uchet.Pages
         {
             Core.ExitUser();
         }
+
+        private void GroupsControlBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Core.mainWindow.MainFrame.Navigate(new GroupsControlPage());
+        }
+
+        private void SubjectsControlBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Core.mainWindow.MainFrame.Navigate(new SubjectsControlPage());
+        }
     }
 }

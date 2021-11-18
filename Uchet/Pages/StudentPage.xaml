@@ -10,6 +10,8 @@
 
     <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
         <StackPanel HorizontalAlignment="Stretch" x:Name="SubjectSP">
+            <Button Content="Посмотреть оценки" Margin="5" x:Name="ShowGradesBTN" Click="ShowGradesBTN_Click"/>
+            <Button Content="Выход" Margin="5" x:Name="ExitBTN" Click="ExitBTN_Click"/>
         </StackPanel>
     </Border>
 </Page>

@@ -18,27 +18,27 @@ using Uchet.Pages;
 
 namespace Uchet.Pages
 {
-    public partial class UserControlPage : Page
+    public partial class GroupsControlPage : Page
     {
-        public UserControlPage()
+        public GroupsControlPage()
         {
             InitializeComponent();
-            UsersDataGrid.ItemsSource = Core.DB.Users.ToList();
+            GroupsDataGrid.ItemsSource = Core.DB.Groups.ToList();
         }
 
-        private void CreateUserBTN_Click(object sender, RoutedEventArgs e)
+        private void CreateGroupBTN_Click(object sender, RoutedEventArgs e)
         {
-            Core.mainWindow.MainFrame.Navigate(new AddNewUser(-1));
+            Core.mainWindow.MainFrame.Navigate(new AddNewGroup(-1));
         }
 
         private void RefreshBTN_Click(object sender, RoutedEventArgs e)
         {
-            UsersDataGrid.ItemsSource = Core.DB.Users.ToList();
+            GroupsDataGrid.ItemsSource = Core.DB.Groups.ToList();
         }
 
         private void EditBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (UsersDataGrid.SelectedItem == null)
+            if (GroupsDataGrid.SelectedItem == null)
             {
                 return;
             }
@@ -47,27 +47,27 @@ namespace Uchet.Pages
 
             while (true)
             {
-                if (UsersDataGrid.SelectedItem == Core.DB.Users.Where(s => s.Id == id).FirstOrDefault())
+                if (GroupsDataGrid.SelectedItem == Core.DB.Groups.Where(s => s.Id == id).FirstOrDefault())
                 {
                     break;
                 }
                 id++;
             }
 
-            Core.mainWindow.MainFrame.Navigate(new AddNewUser(id));
+            Core.mainWindow.MainFrame.Navigate(new AddNewGroup(id));
         }
 
         private void DeleteBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (UsersDataGrid.SelectedItem == null)
+            if (GroupsDataGrid.SelectedItem == null)
             {
                 return;
             }
 
-            Users deleteUser = Core.DB.Users.Where(s => s.Id == UsersDataGrid.SelectedIndex).FirstOrDefault();
-            Core.DB.Users.Remove(deleteUser);
+            Groups deleteGroup = Core.DB.Groups.Where(s => s.Id == GroupsDataGrid.SelectedIndex).FirstOrDefault();
+            Core.DB.Groups.Remove(deleteGroup);
             Core.DB.SaveChanges();
-            UsersDataGrid.ItemsSource = Core.DB.Users.ToList();
+            GroupsDataGrid.ItemsSource = Core.DB.Groups.ToList();
         }
     }
 }
