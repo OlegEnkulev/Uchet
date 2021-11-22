@@ -18,5 +18,8 @@ namespace Uchet.Resources
         public string Title { get; set; }
         public string Description { get; set; }
         public System.DateTime Date { get; set; }
+        public Nullable<int> UserId { get; set; }
+    
+        public virtual Users Users { get; set; }
     }
 }

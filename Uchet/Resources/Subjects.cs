@@ -14,6 +14,12 @@ namespace Uchet.Resources
     
     public partial class Subjects
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Subjects()
+        {
+            this.Grades = new HashSet<Grades>();
+        }
+    
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -22,5 +28,7 @@ namespace Uchet.Resources
     
         public virtual Users Users { get; set; }
         public virtual Groups Groups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Grades> Grades { get; set; }
     }
 }

@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\AddNewGrades.xaml.cs">
+      <DependentUpon>AddNewGrades.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddNewNews.xaml.cs">
       <DependentUpon>AddNewNews.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,9 @@
     </Compile>
     <Compile Include="Pages\UserControlPage.xaml.cs">
       <DependentUpon>UserControlPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TeacherSubjectPage.xaml.cs">
+      <DependentUpon>TeacherSubjectPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserSubjectPage.xaml.cs">
       <DependentUpon>UserSubjectPage.xaml</DependentUpon>
@@ -146,6 +152,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AddNewGrades.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AddNewNews.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +207,10 @@
     <Page Include="Pages\UserControlPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TeacherSubjectPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\UserSubjectPage.xaml">
       <SubType>Designer</SubType>

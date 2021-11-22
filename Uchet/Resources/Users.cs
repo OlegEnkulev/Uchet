@@ -20,6 +20,7 @@ namespace Uchet.Resources
             this.Grades = new HashSet<Grades>();
             this.Grades1 = new HashSet<Grades>();
             this.Subjects = new HashSet<Subjects>();
+            this.News = new HashSet<News>();
         }
     
         public int Id { get; set; }
@@ -37,5 +38,7 @@ namespace Uchet.Resources
         public virtual Groups Groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subjects> Subjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<News> News { get; set; }
     }
 }

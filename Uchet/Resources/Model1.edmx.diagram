@@ -15,6 +15,8 @@
         <AssociationConnector Association="UchetDBModel.FK_Users_Groups" ManuallyRouted="false" />
         <AssociationConnector Association="UchetDBModel.FK_Subjects_Users" ManuallyRouted="false" />
         <AssociationConnector Association="UchetDBModel.FK_Subjects_Groups" />
+        <AssociationConnector Association="UchetDBModel.FK_Grades_Subjects" />
+        <AssociationConnector Association="UchetDBModel.FK_News_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

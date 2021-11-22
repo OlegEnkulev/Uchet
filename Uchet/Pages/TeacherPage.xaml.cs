@@ -19,60 +19,60 @@ namespace Uchet.Pages
 {
     public partial class TeacherPage : Page
     {
-        int subjectCount;
+        //int subjectCount;
 
-        Button[] subjectButton = new Button[Core.DB.Subjects.Where(s => s.TeacherId == Core.currentUser.Id).Count()];
+        //Button[] subjectButton = new Button[Core.DB.Subjects.Where(s => s.TeacherId == Core.currentUser.Id).Count()];
 
         public TeacherPage()
         {
             InitializeComponent();
 
-            UpdateSubjects();
+            //UpdateSubjects();
         }
 
-        void UpdateSubjects()
-        {
-            subjectCount = Core.DB.Subjects.Where(s => s.TeacherId == Core.currentUser.Id).Count();
+        //void UpdateSubjects()
+        //{
+        //    subjectCount = Core.DB.Subjects.Where(s => s.TeacherId == Core.currentUser.Id).Count();
 
-            SubjectsSP.Children.Clear();
+        //    SubjectsSP.Children.Clear();
 
-            int iCorrect = 0;
+        //    int iCorrect = 0;
 
-            for (int i = 0; i < subjectCount; i++)
-            {
-                if (Core.DB.Subjects.Where(s => s.Id == iCorrect && s.TeacherId == Core.currentUser.Id).FirstOrDefault() != null)
-                {
-                    Subjects subject = Core.DB.Subjects.Where(s => s.Id == iCorrect).FirstOrDefault();
+        //    for (int i = 0; i < subjectCount; i++)
+        //    {
+        //        if (Core.DB.Subjects.Where(s => s.Id == iCorrect && s.TeacherId == Core.currentUser.Id).FirstOrDefault() != null)
+        //        {
+        //            Subjects subject = Core.DB.Subjects.Where(s => s.Id == iCorrect).FirstOrDefault();
 
-                    subjectButton[i] = new Button();
-                    subjectButton[i].Margin = new Thickness(5);
-                    subjectButton[i].Content = subject.Title + " " + subject.Groups.Name;
-                    subjectButton[i].Tag = iCorrect;
-                    subjectButton[i].Click += OpenSubjectPage;
+        //            subjectButton[i] = new Button();
+        //            subjectButton[i].Margin = new Thickness(5);
+        //            subjectButton[i].Content = subject.Title + " " + subject.Groups.Name;
+        //            subjectButton[i].Tag = iCorrect;
+        //            subjectButton[i].Click += OpenSubjectPage;
 
-                    SubjectsSP.Children.Add(subjectButton[i]);
-                }
-                else
-                    i--;
-                iCorrect++;
-            }
+        //            SubjectsSP.Children.Add(subjectButton[i]);
+        //        }
+        //        else
+        //            i--;
+        //        iCorrect++;
+        //    }
 
-            Button exitButton = new Button();
-            exitButton.Margin = new Thickness(5);
-            exitButton.Content = "Выход";
-            exitButton.Click += ExitBTN_Click;
+        //    Button exitButton = new Button();
+        //    exitButton.Margin = new Thickness(5);
+        //    exitButton.Content = "Выход";
+        //    exitButton.Click += ExitBTN_Click;
 
-            SubjectsSP.Children.Add(exitButton);
-        }
-
-        public void OpenSubjectPage(object sender, EventArgs e)
-        {
-
-        }
+        //    SubjectsSP.Children.Add(exitButton);
+        //}
 
         private void ExitBTN_Click(object sender, RoutedEventArgs e)
         {
             Core.ExitUser();
+        }
+
+        private void OpenSubjectPageBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Core.mainWindow.MainFrame.Navigate(new TeacherSubjectPage());
         }
     }
 }
