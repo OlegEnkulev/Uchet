@@ -26,26 +26,12 @@ namespace Uchet.Pages
 
         private void RefreshBTN_Click(object sender, RoutedEventArgs e)
         {
-            List<Grades> grades = new List<Grades>();
-
-            int iCorrect = 0;
-            for (int i = 0; i < Core.DB.Grades.Count(); i++)
-            {
-                if (Core.DB.Grades.Where(g => g.Id == iCorrect && g.UserId == Core.currentUser.Id && g.Date > DateFirstDatePicker.SelectedDate && g.Date < DateLastDatePicker.SelectedDate).FirstOrDefault() != null)
-                {
-                    grades.Add(Core.DB.Grades.Where(g => g.Id == iCorrect).FirstOrDefault());
-                }
-                else
-                    i--;
-                iCorrect++;
-            }
-
-            GradesDataGrid.ItemsSource = grades;
+            GradesDataGrid.ItemsSource = Core.DB.Grades.Where(g => g.UserId == Core.currentUser.Id && g.Date > DateFirstDatePicker.SelectedDate && g.Date < DateLastDatePicker.SelectedDate).ToList();
         }
 
         private void AddGrades_Click(object sender, RoutedEventArgs e)
         {
-
+            Core.mainWindow.MainFrame.Navigate(new AddNewGrades(-1));
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Uchet.Pages
 
             if(Core.DB.Users.Where(s => s.Login == LoginBox.Text && s.Password == PasswordBox.Password).FirstOrDefault() == null)
             {
-                MessageBox.Show("Данные неправильны");
+                MessageBox.Show("Данные неверны");
                 return;
             }
 
