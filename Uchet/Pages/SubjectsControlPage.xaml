@@ -22,7 +22,7 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Users.FirstName}"></TextBlock>
-                                        <TextBlock Text="{Binding Users.LastName}"></TextBlock>
+                                        <TextBlock Text="{Binding Users.LastName}" Visibility="Hidden"></TextBlock>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

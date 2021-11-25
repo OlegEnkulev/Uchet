@@ -34,23 +34,7 @@ namespace Uchet.Pages
                 return;
             }
 
-
-
-            List<Grades> grades = new List<Grades>();
-
-            int iCorrect = 0;
-            for (int i = 0; i < Core.DB.Grades.Count(); i++)
-            {
-                if (Core.DB.Grades.Where(g => g.Subjects.Title == SubjectsBox.SelectedItem && g.Subjects.GroupId == Core.currentUser.GroupID && g.Id == iCorrect && g.StudentId == Core.currentUser.Id && g.Date > DateFirstDatePicker.SelectedDate && g.Date < DateLastDatePicker.SelectedDate).FirstOrDefault() != null)
-                {
-                    grades.Add(Core.DB.Grades.Where(g => g.Id == iCorrect).FirstOrDefault());
-                }
-                else
-                    i--;
-                iCorrect++;
-            }
-
-            GradesDataGrid.ItemsSource = grades;
+            GradesDataGrid.ItemsSource = Core.DB.Grades.Where(g => g.Subjects.Title == SubjectsBox.SelectedItem && g.Subjects.GroupId == Core.currentUser.GroupID && g.StudentId == Core.currentUser.Id && g.Date > DateFirstDatePicker.SelectedDate && g.Date < DateLastDatePicker.SelectedDate).ToList();
         }
     }
 }

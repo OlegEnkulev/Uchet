@@ -50,6 +50,7 @@ namespace Uchet.Pages
                     textBlock[i].Margin = new Thickness(5);
                     textBlock[i].Foreground = Brushes.White;
                     textBlock[i].Text = news.Description;
+                    textBlock[i].TextWrapping = TextWrapping.Wrap;
 
                     border1[i] = new Border();
                     border1[i].Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#776993");
@@ -60,7 +61,7 @@ namespace Uchet.Pages
                     border1[i].Child = textBlock[i];
 
                     label[i] = new Label();
-                    label[i].FontSize = 20;
+                    label[i].FontSize = 14;
                     label[i].Content = news.Title;
                     label[i].Foreground = Brushes.White;
                     label[i].FontWeight = FontWeights.Bold;
@@ -68,7 +69,7 @@ namespace Uchet.Pages
                     label[i].Width = 350;
 
                     label1[i] = new Label();
-                    label1[i].FontSize = 20;
+                    label1[i].FontSize = 14;
                     label1[i].Content = news.Date.ToString("dd.MM.yyyy");
                     label1[i].Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#635679");
                     label1[i].FontWeight = FontWeights.Light;

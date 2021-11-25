@@ -21,7 +21,7 @@
                 </DataGrid>
             </ScrollViewer>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="CreateUserBTN" Content="Создать нового пользователя" Margin="5" Width="250" Click="CreateGroupBTN_Click"/>
+                <Button x:Name="CreateUserBTN" Content="Создать новую группу" Margin="5" Width="250" Click="CreateGroupBTN_Click"/>
                 <Button x:Name="RefreshBTN" Content="Обновить" Margin="5" Width="250" Click="RefreshBTN_Click"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
