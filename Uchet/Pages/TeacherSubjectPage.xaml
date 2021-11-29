@@ -22,8 +22,8 @@
                 
                 <Button Content="Добавить оценки" Margin="5" x:Name="AddGrades" Click="AddGrades_Click"/>
             </StackPanel>
-            
-            <ScrollViewer Margin="5">
+
+            <ScrollViewer Height="300" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <DataGrid x:Name="GradesDataGrid" Margin="5" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Предмет" Binding="{Binding Subjects.Title}" Width="200"/>
