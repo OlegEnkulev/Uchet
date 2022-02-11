@@ -25,9 +25,17 @@ namespace Uchet.Pages
         {
             InitializeComponent();
 
-            TeacherBox.ItemsSource = Core.DB.Users.Where(u => u.Role == 1).Select(u => u.FirstName + " " + u.LastName).ToArray();
-            GroupBox.ItemsSource = Core.DB.Groups.Select(g => g.Name).ToArray();
+            if(Core.currentUser.Role == 0)
+            {
+                TeacherBox.ItemsSource = Core.DB.Users.Where(u => u.Role == 1).Select(u => u.FirstName + " " + u.LastName).ToArray();
+            }
+            else
+            {
+                TeacherBox.IsEnabled = false;
+            }
 
+            GroupsDG.ItemsSource = Core.DB.Groups.ToArray();
+            
             if (userId == -1)
             {
                 isCreated = false;
@@ -44,8 +52,11 @@ namespace Uchet.Pages
 
             TitleBox.Text = currentSubject.Title;
             DescriptionBox.Text = currentSubject.Description;
-            TeacherBox.SelectedItem = currentSubject.Users.FirstName + " " + currentSubject.Users.LastName;
-            GroupBox.SelectedItem = currentSubject.Groups.Name;
+            if(Core.currentUser.Role == 0)
+            {
+                TeacherBox.SelectedItem = currentSubject.Users.FirstName + " " + currentSubject.Users.LastName;
+            }
+            SelectedGroupsDG.ItemsSource = Core.DB.SubjectGroups.Where(g => g.SubjectId ==  currentSubject.Id).ToList();
         }
 
         private void SaveBTN_Click(object sender, RoutedEventArgs e)
@@ -63,16 +74,10 @@ namespace Uchet.Pages
                     o++;
                 }
             }
-            else
-            {
-                Core.DB.Subjects.Remove(Core.DB.Subjects.Where(s => s.Id == currentSubject.Id).FirstOrDefault());
-                Core.DB.SaveChanges();
-            }
 
             currentSubject.Title = TitleBox.Text;
             currentSubject.Description = DescriptionBox.Text;
             currentSubject.TeacherId = Core.DB.Users.Where(u => u.FirstName + " " + u.LastName == TeacherBox.SelectedItem).FirstOrDefault().Id;
-            currentSubject.GroupId = Core.DB.Groups.Where(g => g.Name == GroupBox.SelectedItem).Select(g => g.Id).FirstOrDefault();
 
             Core.DB.Subjects.Add(currentSubject);
             Core.DB.SaveChanges();
@@ -83,6 +88,44 @@ namespace Uchet.Pages
         private void ExitBTN_Click(object sender, RoutedEventArgs e)
         {
             Core.mainWindow.MainFrame.Navigate(new SubjectsControlPage());
+        }
+
+        private void DeleteGroupBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if(SelectedGroupsDG.SelectedItems == null)
+            {
+                MessageBox.Show("Не выбрано ни одного элемента");
+                return;
+            }
+
+            for (int i = 0; i < SelectedGroupsDG.SelectedItems.Count; i++)
+            {
+                Core.DB.SubjectGroups.Remove((SubjectGroups)SelectedGroupsDG.SelectedItems[i]);
+            }
+        }
+
+        private void SelectGroupBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if (GroupsDG.SelectedItems == null)
+            {
+                MessageBox.Show("Не выбрано ни одного элемента");
+                return;
+            }
+
+            for (int i = 0; i < GroupsDG.SelectedItems.Count; i++)
+            {
+                int o = 0;
+                while (true)
+                {
+                    if (Core.DB.SubjectGroups.Where(s => s.Id == o).FirstOrDefault() == null)
+                    {
+                        SubjectGroups newSelect = new SubjectGroups() { GroupId = ((Groups)GroupsDG.SelectedItems[i]).Id, SubjectId = currentSubject.Id, Id = o};
+                        Core.DB.SubjectGroups.Add(newSelect);
+                        break;
+                    }
+                    o++;
+                }
+            }
         }
     }
 }

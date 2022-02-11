@@ -24,7 +24,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
                 <Label Content="Оценка:" Width="100" Foreground="White"/>
-                <TextBox x:Name="GradeBox" Width="180" IsEnabled="False"/>
+                <ComboBox x:Name="GradeBox" Width="180" IsEnabled="False"/>
             </StackPanel>
             <Button x:Name="SaveBTN" Content="Сохранить" Margin="5" Width="250" Click="SaveBTN_Click" IsEnabled="False"/>
             <Button x:Name="ExitBTN" Content="Назад" Margin="5" Width="250" Click="ExitBTN_Click"/>

@@ -26,7 +26,7 @@ namespace Uchet.Pages
 
         private void RefreshBTN_Click(object sender, RoutedEventArgs e)
         {
-            GradesDataGrid.ItemsSource = Core.DB.Grades.Where(g => g.UserId == Core.currentUser.Id && g.Date > DateFirstDatePicker.SelectedDate && g.Date < DateLastDatePicker.SelectedDate).ToList();
+            GradesDataGrid.ItemsSource = Core.DB.UsersGrades.Where(g => g.UserId == Core.currentUser.Id && g.Date > DateFirstDatePicker.SelectedDate && g.Date < DateLastDatePicker.SelectedDate).ToList();
         }
 
         private void AddGrades_Click(object sender, RoutedEventArgs e)

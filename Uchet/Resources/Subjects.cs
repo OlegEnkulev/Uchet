@@ -17,18 +17,19 @@ namespace Uchet.Resources
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Subjects()
         {
-            this.Grades = new HashSet<Grades>();
+            this.SubjectGroups = new HashSet<SubjectGroups>();
+            this.UsersGrades = new HashSet<UsersGrades>();
         }
     
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int TeacherId { get; set; }
-        public int GroupId { get; set; }
     
-        public virtual Users Users { get; set; }
-        public virtual Groups Groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Grades> Grades { get; set; }
+        public virtual ICollection<SubjectGroups> SubjectGroups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsersGrades> UsersGrades { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

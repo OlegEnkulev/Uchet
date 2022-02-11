@@ -28,7 +28,9 @@ namespace Uchet.Resources
         public virtual DbSet<Grades> Grades { get; set; }
         public virtual DbSet<Groups> Groups { get; set; }
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<SubjectGroups> SubjectGroups { get; set; }
         public virtual DbSet<Subjects> Subjects { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UsersGrades> UsersGrades { get; set; }
     }
 }

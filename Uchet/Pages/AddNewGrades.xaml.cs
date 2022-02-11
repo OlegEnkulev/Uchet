@@ -19,13 +19,13 @@ namespace Uchet.Pages
 {
     public partial class AddNewGrades : Page
     {
-        Grades currentGrade;
+        UsersGrades currentGrade;
         bool isCreated = true;
         public AddNewGrades(int userId)
         {
             InitializeComponent();
 
-
+            GradeBox.ItemsSource = Core.DB.Grades.Select(x => x.Grade).ToArray();
             GroupBox.ItemsSource = Core.DB.Groups.Select(g => g.Name).ToArray();
 
             if (userId == -1)
@@ -34,7 +34,7 @@ namespace Uchet.Pages
                 return;
             }
 
-            currentGrade = Core.DB.Grades.Where(s => s.Id == userId).FirstOrDefault();
+            currentGrade = Core.DB.UsersGrades.Where(s => s.Id == userId).FirstOrDefault();
 
             if (currentGrade == null)
             {
@@ -58,9 +58,9 @@ namespace Uchet.Pages
                 int o = 0;
                 while (true)
                 {
-                    if (Core.DB.Grades.Where(s => s.Id == o).FirstOrDefault() == null)
+                    if (Core.DB.UsersGrades.Where(s => s.Id == o).FirstOrDefault() == null)
                     {
-                        currentGrade = new Grades { Id = o };
+                        currentGrade = new UsersGrades { Id = o };
                         break;
                     }
                     o++;
@@ -68,7 +68,7 @@ namespace Uchet.Pages
             }
             else
             {
-                Core.DB.Grades.Remove(Core.DB.Grades.Where(s => s.Id == currentGrade.Id).FirstOrDefault());
+                Core.DB.UsersGrades.Remove(Core.DB.UsersGrades.Where(s => s.Id == currentGrade.Id).FirstOrDefault());
                 Core.DB.SaveChanges();
             }
 
@@ -78,7 +78,7 @@ namespace Uchet.Pages
             currentGrade.StudentId = Core.DB.Users.Where(u => u.LastName == StudentBox.SelectedItem && u.Groups.Name == GroupBox.SelectedItem).FirstOrDefault().Id;
             try
             {
-                currentGrade.Grade = Convert.ToInt32(GradeBox.Text);
+                currentGrade.GradeId = Core.DB.Grades.Where(g => g.Id == GradeBox.SelectedIndex).FirstOrDefault().Id;
             }
             catch
             {
@@ -86,7 +86,7 @@ namespace Uchet.Pages
                 return;
             }
 
-            Core.DB.Grades.Add(currentGrade);
+            Core.DB.UsersGrades.Add(currentGrade);
             Core.DB.SaveChanges();
 
             Core.mainWindow.MainFrame.Navigate(new TeacherSubjectPage());
@@ -113,7 +113,7 @@ namespace Uchet.Pages
             GradeBox.IsEnabled = false;
             SaveBTN.IsEnabled = false;
 
-            SubjectBox.ItemsSource = Core.DB.Subjects.Where(s => s.Groups.Name == GroupBox.SelectedItem && s.TeacherId == Core.currentUser.Id).Select(s => s.Title).ToArray();
+            SubjectBox.ItemsSource = Core.DB.Subjects.Select(s => s.Title).ToArray();
         }
 
         private void StudentBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

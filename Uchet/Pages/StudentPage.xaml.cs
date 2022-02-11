@@ -19,9 +19,9 @@ namespace Uchet.Pages
 {
     public partial class StudentPage : Page
     {
-        int subjectCount;
+        // int subjectCount;
 
-        Button[] subjectButton = new Button[Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count()];
+        // Button[] subjectButton = new Button[Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count()];
 
         public StudentPage()
         {

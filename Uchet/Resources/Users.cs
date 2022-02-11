@@ -17,10 +17,10 @@ namespace Uchet.Resources
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.Grades = new HashSet<Grades>();
-            this.Grades1 = new HashSet<Grades>();
-            this.Subjects = new HashSet<Subjects>();
             this.News = new HashSet<News>();
+            this.Subjects = new HashSet<Subjects>();
+            this.UsersGrades = new HashSet<UsersGrades>();
+            this.UsersGrades1 = new HashSet<UsersGrades>();
         }
     
         public int Id { get; set; }
@@ -31,14 +31,14 @@ namespace Uchet.Resources
         public int Role { get; set; }
         public int GroupID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Grades> Grades { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Grades> Grades1 { get; set; }
         public virtual Groups Groups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<News> News { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subjects> Subjects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<News> News { get; set; }
+        public virtual ICollection<UsersGrades> UsersGrades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsersGrades> UsersGrades1 { get; set; }
     }
 }

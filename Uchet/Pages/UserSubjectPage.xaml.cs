@@ -23,7 +23,7 @@ namespace Uchet.Pages
         {
             InitializeComponent();
 
-            SubjectsBox.ItemsSource = Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Select(s => s.Title).ToArray();
+            SubjectsBox.ItemsSource = Core.DB.Subjects.Select(s => s.Title).ToArray();
         }
 
         private void RefreshBTN_Click(object sender, RoutedEventArgs e)
@@ -34,7 +34,7 @@ namespace Uchet.Pages
                 return;
             }
 
-            GradesDataGrid.ItemsSource = Core.DB.Grades.Where(g => g.Subjects.Title == SubjectsBox.SelectedItem && g.Subjects.GroupId == Core.currentUser.GroupID && g.StudentId == Core.currentUser.Id && g.Date > DateFirstDatePicker.SelectedDate && g.Date < DateLastDatePicker.SelectedDate).ToList();
+            GradesDataGrid.ItemsSource = Core.DB.UsersGrades.Where(g => g.Subjects.Title == SubjectsBox.SelectedItem && g.StudentId == Core.currentUser.Id && g.Date > DateFirstDatePicker.SelectedDate && g.Date < DateLastDatePicker.SelectedDate).ToList();
         }
     }
 }

@@ -8,21 +8,39 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddNewSubject" FontFamily="Century Gothic" FontSize="14">
 
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
-            <Label Content="Название:" Width="100" Foreground="White"/>
-            <TextBox x:Name="TitleBox" Width="180"/>
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Margin="5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                <Label Content="Название:" Width="100" Foreground="White"/>
+                <TextBox x:Name="TitleBox" Width="180"/>
+            </StackPanel>
+            <Label Content="Описание:" Foreground="White" HorizontalAlignment="Center"/>
+            <TextBox x:Name="DescriptionBox" Width="300" Height="100" Margin="5"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <Label Content="Преподаватель:" Width="130" Foreground="White"/>
+                <ComboBox x:Name="TeacherBox" Width="180"/>
+            </StackPanel>
+            <Button x:Name="SaveBTN" Content="Сохранить" Margin="5" Width="250" Click="SaveBTN_Click"/>
         </StackPanel>
-        <Label Content="Описание:" Foreground="White" HorizontalAlignment="Center"/>
-        <TextBox x:Name="DescriptionBox" Width="300" Height="100" Margin="5"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-            <Label Content="Преподаватель:" Width="130" Foreground="White"/>
-            <ComboBox x:Name="TeacherBox" Width="180"/>
+        <StackPanel Margin="5">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Height="200" Margin="5">
+                <DataGrid x:Name="GroupsDG" Width="150">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Доступные группы" Width="150" Binding="{Binding Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+            <Button x:Name="SelectGroupBTN" Content="Выбрать" Margin="5" Click="SelectGroupBTN_Click"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-            <Label Content="Группа:" Width="130" Foreground="White"/>
-            <ComboBox x:Name="GroupBox" Width="180"/>
+        <StackPanel Margin="5">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Height="200" Margin="5">
+                <DataGrid x:Name="SelectedGroupsDG" Width="150">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Выбранные группы" Width="150" Binding="{Binding Groups.Name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+            <Button x:Name="DeleteGroupBTN" Content="Удалить" Margin="5" Click="DeleteGroupBTN_Click"/>
         </StackPanel>
-        <Button x:Name="SaveBTN" Content="Сохранить" Margin="5" Width="250" Click="SaveBTN_Click"/>
     </StackPanel>
 </Page>

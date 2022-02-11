@@ -4,17 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище UchetDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище UchetDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Grades">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Grade" Type="int" />
-          <Property Name="UserId" Type="int" />
-          <Property Name="StudentId" Type="int" />
-          <Property Name="SubjectID" Type="int" />
-          <Property Name="Date" Type="date" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -34,6 +30,14 @@
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="UserId" Type="int" />
         </EntityType>
+        <EntityType Name="SubjectGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Subjects">
           <Key>
             <PropertyRef Name="Id" />
@@ -42,7 +46,6 @@
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="TeacherId" Type="int" Nullable="false" />
-          <Property Name="GroupId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -56,38 +59,49 @@
           <Property Name="Role" Type="int" Nullable="false" />
           <Property Name="GroupID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UsersGrades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="GradeId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
         <Association Name="FK_Grades_Subjects">
           <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1" />
-          <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+          <End Role="UsersGrades" Type="Self.UsersGrades" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subjects">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Grades">
+            <Dependent Role="UsersGrades">
               <PropertyRef Name="SubjectID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grades_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+          <End Role="UsersGrades" Type="Self.UsersGrades" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Grades">
+            <Dependent Role="UsersGrades">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grades_Users1">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+          <End Role="UsersGrades" Type="Self.UsersGrades" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Grades">
+            <Dependent Role="UsersGrades">
               <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -104,6 +118,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SubjectGroups_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="SubjectGroups" Type="Self.SubjectGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectGroups">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectGroups_Subjects">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="SubjectGroups" Type="Self.SubjectGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectGroups">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Subjects_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
@@ -128,27 +166,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UsersGrades_Grades">
+          <End Role="Grades" Type="Self.Grades" Multiplicity="0..1" />
+          <End Role="UsersGrades" Type="Self.UsersGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersGrades">
+              <PropertyRef Name="GradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище UchetDBModelContainer">
           <EntitySet Name="Grades" EntityType="Self.Grades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectGroups" EntityType="Self.SubjectGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersGrades" EntityType="Self.UsersGrades" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Grades_Subjects" Association="Self.FK_Grades_Subjects">
             <End Role="Subjects" EntitySet="Subjects" />
-            <End Role="Grades" EntitySet="Grades" />
+            <End Role="UsersGrades" EntitySet="UsersGrades" />
           </AssociationSet>
           <AssociationSet Name="FK_Grades_Users" Association="Self.FK_Grades_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Grades" EntitySet="Grades" />
+            <End Role="UsersGrades" EntitySet="UsersGrades" />
           </AssociationSet>
           <AssociationSet Name="FK_Grades_Users1" Association="Self.FK_Grades_Users1">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Grades" EntitySet="Grades" />
+            <End Role="UsersGrades" EntitySet="UsersGrades" />
           </AssociationSet>
           <AssociationSet Name="FK_News_Users" Association="Self.FK_News_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectGroups_Groups" Association="Self.FK_SubjectGroups_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="SubjectGroups" EntitySet="SubjectGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectGroups_Subjects" Association="Self.FK_SubjectGroups_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="SubjectGroups" EntitySet="SubjectGroups" />
           </AssociationSet>
           <AssociationSet Name="FK_Subjects_Users" Association="Self.FK_Subjects_Users">
             <End Role="Users" EntitySet="Users" />
@@ -158,8 +218,13 @@
             <End Role="Groups" EntitySet="Groups" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_UsersGrades_Grades" Association="Self.FK_UsersGrades_Grades">
+            <End Role="Grades" EntitySet="Grades" />
+            <End Role="UsersGrades" EntitySet="UsersGrades" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UchetDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -168,14 +233,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Grade" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="SubjectID" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Grades_Users" FromRole="Grades" ToRole="Users" />
-          <NavigationProperty Name="Users1" Relationship="Self.FK_Grades_Users1" FromRole="Grades" ToRole="Users" />
-          <NavigationProperty Name="Subjects" Relationship="UchetDBModel.FK_Grades_Subjects" FromRole="Grades" ToRole="Subjects" />
+          <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UsersGrades" Relationship="Self.FK_UsersGrades_Grades" FromRole="Grades" ToRole="UsersGrades" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -184,8 +243,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SubjectGroups" Relationship="Self.FK_SubjectGroups_Groups" FromRole="Groups" ToRole="SubjectGroups" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Groups" FromRole="Groups" ToRole="Users" />
-          <NavigationProperty Name="Subjects" Relationship="UchetDBModel.FK_Subjects_Groups" FromRole="Groups" ToRole="Subjects" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -196,7 +255,17 @@
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="Users" Relationship="UchetDBModel.FK_News_Users" FromRole="News" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_News_Users" FromRole="News" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="SubjectGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_SubjectGroups_Groups" FromRole="SubjectGroups" ToRole="Groups" />
+          <NavigationProperty Name="Subjects" Relationship="Self.FK_SubjectGroups_Subjects" FromRole="SubjectGroups" ToRole="Subjects" />
         </EntityType>
         <EntityType Name="Subjects">
           <Key>
@@ -206,10 +275,9 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SubjectGroups" Relationship="Self.FK_SubjectGroups_Subjects" FromRole="Subjects" ToRole="SubjectGroups" />
+          <NavigationProperty Name="UsersGrades" Relationship="Self.FK_Grades_Subjects" FromRole="Subjects" ToRole="UsersGrades" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Subjects_Users" FromRole="Subjects" ToRole="Users" />
-          <Property Name="GroupId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Groups" Relationship="UchetDBModel.FK_Subjects_Groups" FromRole="Subjects" ToRole="Groups" />
-          <NavigationProperty Name="Grades" Relationship="UchetDBModel.FK_Grades_Subjects" FromRole="Subjects" ToRole="Grades" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -222,33 +290,48 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Role" Type="Int32" Nullable="false" />
           <Property Name="GroupID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Grades" Relationship="Self.FK_Grades_Users" FromRole="Users" ToRole="Grades" />
-          <NavigationProperty Name="Grades1" Relationship="Self.FK_Grades_Users1" FromRole="Users" ToRole="Grades" />
           <NavigationProperty Name="Groups" Relationship="Self.FK_Users_Groups" FromRole="Users" ToRole="Groups" />
+          <NavigationProperty Name="News" Relationship="Self.FK_News_Users" FromRole="Users" ToRole="News" />
           <NavigationProperty Name="Subjects" Relationship="Self.FK_Subjects_Users" FromRole="Users" ToRole="Subjects" />
-          <NavigationProperty Name="News" Relationship="UchetDBModel.FK_News_Users" FromRole="Users" ToRole="News" />
+          <NavigationProperty Name="UsersGrades" Relationship="Self.FK_Grades_Users" FromRole="Users" ToRole="UsersGrades" />
+          <NavigationProperty Name="UsersGrades1" Relationship="Self.FK_Grades_Users1" FromRole="Users" ToRole="UsersGrades" />
         </EntityType>
-        <Association Name="FK_Grades_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+        <EntityType Name="UsersGrades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="GradeId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Grades" Relationship="Self.FK_UsersGrades_Grades" FromRole="UsersGrades" ToRole="Grades" />
+          <NavigationProperty Name="Subjects" Relationship="Self.FK_Grades_Subjects" FromRole="UsersGrades" ToRole="Subjects" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Grades_Users" FromRole="UsersGrades" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_Grades_Users1" FromRole="UsersGrades" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_UsersGrades_Grades">
+          <End Role="Grades" Type="Self.Grades" Multiplicity="0..1" />
+          <End Role="UsersGrades" Type="Self.UsersGrades" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="Grades">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Grades">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="UsersGrades">
+              <PropertyRef Name="GradeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Grades_Users1">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+        <Association Name="FK_SubjectGroups_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="SubjectGroups" Type="Self.SubjectGroups" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="Groups">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Grades">
-              <PropertyRef Name="StudentId" />
+            <Dependent Role="SubjectGroups">
+              <PropertyRef Name="GroupId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -264,6 +347,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_News_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectGroups_Subjects">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="SubjectGroups" Type="Self.SubjectGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubjectGroups">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grades_Subjects">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1" />
+          <End Role="UsersGrades" Type="Self.UsersGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersGrades">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Subjects_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
@@ -276,77 +395,75 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Grades_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UsersGrades" Type="Self.UsersGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersGrades">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grades_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UsersGrades" Type="Self.UsersGrades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersGrades">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="UchetDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Grades" EntityType="Self.Grades" />
           <EntitySet Name="Groups" EntityType="Self.Groups" />
           <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="SubjectGroups" EntityType="Self.SubjectGroups" />
           <EntitySet Name="Subjects" EntityType="Self.Subjects" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK_Grades_Users" Association="Self.FK_Grades_Users">
-            <End Role="Users" EntitySet="Users" />
+          <EntitySet Name="UsersGrades" EntityType="Self.UsersGrades" />
+          <AssociationSet Name="FK_UsersGrades_Grades" Association="Self.FK_UsersGrades_Grades">
             <End Role="Grades" EntitySet="Grades" />
+            <End Role="UsersGrades" EntitySet="UsersGrades" />
           </AssociationSet>
-          <AssociationSet Name="FK_Grades_Users1" Association="Self.FK_Grades_Users1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Grades" EntitySet="Grades" />
+          <AssociationSet Name="FK_SubjectGroups_Groups" Association="Self.FK_SubjectGroups_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="SubjectGroups" EntitySet="SubjectGroups" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Groups" Association="Self.FK_Users_Groups">
             <End Role="Groups" EntitySet="Groups" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_News_Users" Association="Self.FK_News_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectGroups_Subjects" Association="Self.FK_SubjectGroups_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="SubjectGroups" EntitySet="SubjectGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grades_Subjects" Association="Self.FK_Grades_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="UsersGrades" EntitySet="UsersGrades" />
+          </AssociationSet>
           <AssociationSet Name="FK_Subjects_Users" Association="Self.FK_Subjects_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Subjects" EntitySet="Subjects" />
           </AssociationSet>
-          <AssociationSet Name="FK_Subjects_Groups" Association="UchetDBModel.FK_Subjects_Groups">
-            <End Role="Groups" EntitySet="Groups" />
-            <End Role="Subjects" EntitySet="Subjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Grades_Subjects" Association="UchetDBModel.FK_Grades_Subjects">
-            <End Role="Subjects" EntitySet="Subjects" />
-            <End Role="Grades" EntitySet="Grades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_News_Users" Association="UchetDBModel.FK_News_Users">
+          <AssociationSet Name="FK_Grades_Users" Association="Self.FK_Grades_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="News" EntitySet="News" />
+            <End Role="UsersGrades" EntitySet="UsersGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grades_Users1" Association="Self.FK_Grades_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersGrades" EntitySet="UsersGrades" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Subjects_Groups">
-          <End Type="UchetDBModel.Groups" Role="Groups" Multiplicity="1" />
-          <End Type="UchetDBModel.Subjects" Role="Subjects" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groups">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Subjects">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Grades_Subjects">
-          <End Type="UchetDBModel.Subjects" Role="Subjects" Multiplicity="0..1" />
-          <End Type="UchetDBModel.Grades" Role="Grades" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Subjects">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Grades">
-              <PropertyRef Name="SubjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_News_Users">
-          <End Type="UchetDBModel.Users" Role="Users" Multiplicity="0..1" />
-          <End Type="UchetDBModel.News" Role="News" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="News">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -358,10 +475,6 @@
               <MappingFragment StoreEntitySet="Grades">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Grade" ColumnName="Grade" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -377,18 +490,26 @@
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="UchetDBModel.News">
               <MappingFragment StoreEntitySet="News">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectGroups">
+            <EntityTypeMapping TypeName="UchetDBModel.SubjectGroups">
+              <MappingFragment StoreEntitySet="SubjectGroups">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subjects">
             <EntityTypeMapping TypeName="UchetDBModel.Subjects">
               <MappingFragment StoreEntitySet="Subjects">
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -406,6 +527,18 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersGrades">
+            <EntityTypeMapping TypeName="UchetDBModel.UsersGrades">
+              <MappingFragment StoreEntitySet="UsersGrades">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GradeId" ColumnName="GradeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
