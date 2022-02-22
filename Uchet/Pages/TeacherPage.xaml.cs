@@ -14,65 +14,43 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Uchet.Pages;
 using Uchet.Resources;
+using Uchet.Pages.TeacherPages;
 
 namespace Uchet.Pages
 {
     public partial class TeacherPage : Page
     {
-        //int subjectCount;
-
-        //Button[] subjectButton = new Button[Core.DB.Subjects.Where(s => s.TeacherId == Core.currentUser.Id).Count()];
 
         public TeacherPage()
         {
             InitializeComponent();
 
-            //UpdateSubjects();
+            IdLabel.Content = "Ваш айди: " + Core.currentUser.Id;
         }
 
-        //void UpdateSubjects()
-        //{
-        //    subjectCount = Core.DB.Subjects.Where(s => s.TeacherId == Core.currentUser.Id).Count();
+        private void SubjectsBTN_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherFrame.Navigate(new SubjectsControlPage());
+        }
 
-        //    SubjectsSP.Children.Clear();
+        private void TopicsBTN_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherFrame.Navigate(new TopicsControlPage());
+        }
 
-        //    int iCorrect = 0;
+        private void UsersTopicsBTN_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherFrame.Navigate(new UsersWithTopicsPage());
+        }
 
-        //    for (int i = 0; i < subjectCount; i++)
-        //    {
-        //        if (Core.DB.Subjects.Where(s => s.Id == iCorrect && s.TeacherId == Core.currentUser.Id).FirstOrDefault() != null)
-        //        {
-        //            Subjects subject = Core.DB.Subjects.Where(s => s.Id == iCorrect).FirstOrDefault();
+        private void GradesBTN_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherFrame.Navigate(new GradesPage());
+        }
 
-        //            subjectButton[i] = new Button();
-        //            subjectButton[i].Margin = new Thickness(5);
-        //            subjectButton[i].Content = subject.Title + " " + subject.Groups.Name;
-        //            subjectButton[i].Tag = iCorrect;
-        //            subjectButton[i].Click += OpenSubjectPage;
-
-        //            SubjectsSP.Children.Add(subjectButton[i]);
-        //        }
-        //        else
-        //            i--;
-        //        iCorrect++;
-        //    }
-
-        //    Button exitButton = new Button();
-        //    exitButton.Margin = new Thickness(5);
-        //    exitButton.Content = "Выход";
-        //    exitButton.Click += ExitBTN_Click;
-
-        //    SubjectsSP.Children.Add(exitButton);
-        //}
-
-        private void ExitBTN_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Core.ExitUser();
-        }
-
-        private void OpenSubjectPageBTN_Click(object sender, RoutedEventArgs e)
-        {
-            Core.mainWindow.MainFrame.Navigate(new TeacherSubjectPage());
         }
     }
 }

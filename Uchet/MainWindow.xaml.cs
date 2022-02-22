@@ -22,9 +22,10 @@ namespace Uchet
         public MainWindow()
         {
             InitializeComponent();
+
             Core.mainWindow = this;
-            MainFrame.Navigate(new NewsPage());
-            SecondFrame.Navigate(new LoginPage());
+
+            MainFrame.Navigate(new LoginPage());
         }
     }
 }

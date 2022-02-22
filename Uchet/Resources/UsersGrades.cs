@@ -15,15 +15,12 @@ namespace Uchet.Resources
     public partial class UsersGrades
     {
         public int Id { get; set; }
-        public Nullable<int> GradeId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<int> StudentId { get; set; }
-        public Nullable<int> SubjectID { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public int GradeId { get; set; }
+        public int TopicId { get; set; }
+        public int UserId { get; set; }
     
         public virtual Grades Grades { get; set; }
-        public virtual Subjects Subjects { get; set; }
+        public virtual Topics Topics { get; set; }
         public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
     }
 }

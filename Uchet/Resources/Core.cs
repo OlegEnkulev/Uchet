@@ -21,16 +21,16 @@ namespace Uchet.Resources
                 return;
             }
 
-            switch (currentUser.Role)
+            switch (currentUser.RoleId)
             {
                 case 0:
-                    mainWindow.SecondFrame.Navigate(new AdminPage());
+                    mainWindow.MainFrame.Navigate(new AdminPage());
                     break;
                 case 1:
-                    mainWindow.SecondFrame.Navigate(new TeacherPage());
+                    mainWindow.MainFrame.Navigate(new TeacherPage());
                     break;
                 case 2:
-                    mainWindow.SecondFrame.Navigate(new StudentPage());
+                    mainWindow.MainFrame.Navigate(new StudentPage());
                     break;
             }
         }
@@ -39,8 +39,7 @@ namespace Uchet.Resources
         {
             currentUser = null;
 
-            mainWindow.MainFrame.Navigate(new NewsPage());
-            mainWindow.SecondFrame.Navigate(new LoginPage());
+            mainWindow.MainFrame.Navigate(new LoginPage());
         }
     }
 }

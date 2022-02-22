@@ -8,12 +8,15 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TeacherPage" FontFamily="Century Gothic" FontSize="14">
 
-    <Grid>
-        <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
-            <StackPanel x:Name="SubjectsSP">
-                <Button x:Name="OpenSubjectPageBTN" Click="OpenSubjectPageBTN_Click" Content="Просмотр и изменение оценок" Margin="5"/>
-                <Button x:Name="ExitBTN" Click="ExitBTN_Click" Content="Назад" Margin="5"/>
-            </StackPanel>
-        </Border>
-    </Grid>
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Content="Ваш айди: ххх" Foreground="White" x:Name="IdLabel" Margin="5"/>
+            <Button Content="Предметы" x:Name="SubjectsBTN" Click="SubjectsBTN_Click" Margin="5"/>
+            <Button Content="Топики" x:Name="TopicsBTN" Click="TopicsBTN_Click" Margin="5"/>
+            <Button Content="Привязка студентов" x:Name="UsersTopicsBTN" Click="UsersTopicsBTN_Click" Margin="5"/>
+            <Button Content="Оценки" x:Name="GradesBTN" Click="GradesBTN_Click" Margin="5"/>
+            <Button Content="Выход" x:Name="Exit" Click="Exit_Click" Margin="5"/>
+        </StackPanel>
+        <Frame x:Name="TeacherFrame" HorizontalAlignment="Stretch" Height="350" Margin="5"/>
+    </StackPanel>
 </Page>

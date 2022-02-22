@@ -7,14 +7,15 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminPage" FontFamily="Century Gothic" FontSize="14">
-
-    <Border Margin="5" Background="#3d3549" CornerRadius="10" BorderThickness="2" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250">
-        <StackPanel>
-            <Button Content="Управление пользователями" Margin="5" x:Name="UserControlBTN" Click="UserControlBTN_Click"/>
-            <Button Content="Управление группами" Margin="5" x:Name="GroupsControlBTN" Click="GroupsControlBTN_Click"/>
-            <Button Content="Управление предметами" Margin="5" x:Name="SubjectsControlBTN" Click="SubjectsControlBTN_Click"/>
-            <Button Content="Управление новостями" Margin="5" x:Name="NewsControlBTN" Click="NewsControlBTN_Click"/>
+    
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Пользователи" Margin="5" x:Name="UserControlBTN" Click="UserControlBTN_Click"/>
+            <Button Content="Группы" Margin="5" x:Name="GroupsControlBTN" Click="GroupsControlBTN_Click"/>
+            <Button Content="Предметы" Margin="5" x:Name="SubjectsControlBTN" Click="SubjectsControlBTN_Click"/>
+            <Button Content="Топики" Margin="5" x:Name="TopicsControlBTN" Click="TopicsControlBTN_Click"/>
             <Button Content="Выход" Margin="5" x:Name="ExitBTN" Click="ExitBTN_Click"/>
         </StackPanel>
-    </Border>
+        <Frame x:Name="AdminFrame" HorizontalAlignment="Stretch" Height="350" Margin="5"/>
+    </StackPanel>
 </Page>

@@ -19,64 +19,38 @@ namespace Uchet.Pages
 {
     public partial class StudentPage : Page
     {
-        // int subjectCount;
-
-        // Button[] subjectButton = new Button[Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count()];
 
         public StudentPage()
         {
             InitializeComponent();
-            //UpdateSubjects();
+
+            SubjectsBox.ItemsSource = Core.DB.UsersInSubjects.Where(x => x.UserId == Core.currentUser.Id).Select(s => s.Subjects.Name).ToArray();
         }
 
-        //void UpdateSubjects()
-        //{
-        //    subjectCount = Core.DB.Subjects.Where(s => s.GroupId == Core.currentUser.GroupID).Count();
-
-        //    SubjectSP.Children.Clear();
-
-        //    int iCorrect = 0;
-
-        //    for (int i = 0; i < subjectCount; i++)
-        //    {
-        //        if (Core.DB.Subjects.Where(s => s.Id == iCorrect && s.GroupId == Core.currentUser.GroupID).FirstOrDefault() != null)
-        //        {
-        //            Subjects subject = Core.DB.Subjects.Where(s => s.Id == iCorrect).FirstOrDefault();
-
-        //            subjectButton[i] = new Button();
-        //            subjectButton[i].Margin = new Thickness(5);
-        //            subjectButton[i].Content = subject.Title;
-        //            subjectButton[i].Tag = iCorrect;
-        //            subjectButton[i].Click += OpenSubjectPage;
-
-        //            SubjectSP.Children.Add(subjectButton[i]);
-        //        }
-        //        else
-        //            i--;
-        //        iCorrect++;
-        //    }
-
-        //    Button exitButton = new Button();
-        //    exitButton.Margin = new Thickness(5);
-        //    exitButton.Content = "Выход";
-        //    exitButton.Click += ExitBTN_Click;
-
-        //    SubjectSP.Children.Add(exitButton);
-        //}
-
-        //public void OpenSubjectPage(object sender, EventArgs e)
-        //{
-
-        //}
-
-        private void ExitBTN_Click(object sender, RoutedEventArgs e)
+        private void RefreshBTN_Click(object sender, RoutedEventArgs e)
         {
-            Core.ExitUser();
-        }
+            if (SubjectsBox.SelectedItem == null && DateFirstDatePicker.SelectedDate == null && DateLastDatePicker.SelectedDate == null)
+            {
+                MessageBox.Show("Не выбран предмет");
 
-        private void ShowGradesBTN_Click(object sender, RoutedEventArgs e)
-        {
-            Core.mainWindow.MainFrame.Navigate(new UserSubjectPage());
+                GradesDataGrid.ItemsSource = Core.DB.UsersGrades.Where(g => g.UserId == Core.currentUser.Id).ToList();
+            }
+            else if (SubjectsBox.SelectedItem != null && DateFirstDatePicker.SelectedDate == null && DateLastDatePicker.SelectedDate == null)
+            {
+                GradesDataGrid.ItemsSource = Core.DB.UsersGrades.Where(g => g.Topics.Subjects.Name == SubjectsBox.SelectedItem && g.UserId == Core.currentUser.Id).ToList();
+            }
+            else if (SubjectsBox.SelectedItem == null && DateFirstDatePicker.SelectedDate != null && DateLastDatePicker.SelectedDate != null)
+            {
+                GradesDataGrid.ItemsSource = Core.DB.UsersGrades.Where(g => g.UserId == Core.currentUser.Id && g.Topics.Date > DateFirstDatePicker.SelectedDate && g.Topics.Date < DateLastDatePicker.SelectedDate).ToList();
+            }
+            else if (SubjectsBox.SelectedItem != null && DateFirstDatePicker.SelectedDate != null && DateLastDatePicker.SelectedDate != null)
+            {
+                GradesDataGrid.ItemsSource = Core.DB.UsersGrades.Where(g => g.Topics.Subjects.Name == SubjectsBox.SelectedItem && g.UserId == Core.currentUser.Id && g.Topics.Date > DateFirstDatePicker.SelectedDate && g.Topics.Date < DateLastDatePicker.SelectedDate).ToList();
+            }
+            else
+            {
+                MessageBox.Show("Вы не уточнили некоторые параметры!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

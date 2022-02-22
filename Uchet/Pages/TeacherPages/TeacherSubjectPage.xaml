@@ -1,0 +1,39 @@
+﻿<Page x:Class="Uchet.Pages.TeacherSubjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Uchet.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TeacherSubjectPage" FontFamily="Century Gothic" FontSize="14">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="5">
+                <Label Content="Период с:" Foreground="White" Width="100" HorizontalContentAlignment="Right" Margin="5"/>
+                <DatePicker x:Name="DateFirstDatePicker" Margin="5"/>
+                <Label Content="Период до:" Foreground="White" Width="100" HorizontalContentAlignment="Right" Margin="5"/>
+                <DatePicker x:Name="DateLastDatePicker" Margin="5"/>
+                <Button Content="Обновить" Margin="5" x:Name="RefreshBTN" Click="RefreshBTN_Click"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                
+                <Button Content="Добавить оценки" Margin="5" x:Name="AddGrades" Click="AddGrades_Click"/>
+            </StackPanel>
+
+            <ScrollViewer Height="300" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="GradesDataGrid" Margin="5" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Предмет" Binding="{Binding Subjects.Title}" Width="200"/>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="150"/>
+                        <DataGridTextColumn Header="оценка" Binding="{Binding Grade}"/>
+                        <DataGridTextColumn Header="группа" Binding="{Binding Users1.Groups.Name}"/>
+                        <DataGridTextColumn Header="студент" Binding="{Binding Users1.LastName}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Page>

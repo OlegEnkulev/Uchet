@@ -17,10 +17,9 @@ namespace Uchet.Resources
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.News = new HashSet<News>();
             this.Subjects = new HashSet<Subjects>();
             this.UsersGrades = new HashSet<UsersGrades>();
-            this.UsersGrades1 = new HashSet<UsersGrades>();
+            this.UsersInSubjects = new HashSet<UsersInSubjects>();
         }
     
         public int Id { get; set; }
@@ -28,17 +27,16 @@ namespace Uchet.Resources
         public string LastName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public int Role { get; set; }
-        public int GroupID { get; set; }
+        public int RoleId { get; set; }
+        public Nullable<int> GroupID { get; set; }
     
         public virtual Groups Groups { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<News> News { get; set; }
+        public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subjects> Subjects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersGrades> UsersGrades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UsersGrades> UsersGrades1 { get; set; }
+        public virtual ICollection<UsersInSubjects> UsersInSubjects { get; set; }
     }
 }

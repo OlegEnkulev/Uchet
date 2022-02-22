@@ -26,27 +26,27 @@ namespace Uchet.Pages
 
         private void UserControlBTN_Click(object sender, RoutedEventArgs e)
         {
-            Core.mainWindow.MainFrame.Navigate(new UserControlPage());
+            AdminFrame.Navigate(new UserControlPage());
         }
 
-        private void NewsControlBTN_Click(object sender, RoutedEventArgs e)
+        private void GroupsControlBTN_Click(object sender, RoutedEventArgs e)
         {
-            Core.mainWindow.MainFrame.Navigate(new NewsControlPage());
+            AdminFrame.Navigate(new GroupsControlPage());
+        }
+
+        private void SubjectsControlBTN_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.Navigate(new SubjectsControlPage());
+        }
+
+        private void TopicsControlBTN_Click(object sender, RoutedEventArgs e)
+        {
+            AdminFrame.Navigate(new TopicsControlPage());
         }
 
         private void ExitBTN_Click(object sender, RoutedEventArgs e)
         {
             Core.ExitUser();
-        }
-
-        private void GroupsControlBTN_Click(object sender, RoutedEventArgs e)
-        {
-            Core.mainWindow.MainFrame.Navigate(new GroupsControlPage());
-        }
-
-        private void SubjectsControlBTN_Click(object sender, RoutedEventArgs e)
-        {
-            Core.mainWindow.MainFrame.Navigate(new SubjectsControlPage());
         }
     }
 }
