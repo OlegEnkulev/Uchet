@@ -29,9 +29,9 @@ namespace Uchet.Pages
 
         void Update()
         {
-            DG.ItemsSource = Core.DB.Users.ToList();
             GCB.ItemsSource = Core.DB.Groups.ToList();
             RCB.ItemsSource = Core.DB.Roles.ToList();
+            DG.ItemsSource = Core.DB.Users.ToList();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

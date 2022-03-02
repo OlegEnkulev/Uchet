@@ -41,15 +41,18 @@ namespace Uchet.Pages.TeacherPages
 
                 UsersInSubjects newRelationship = new UsersInSubjects() { SubjectId = currentSubject.Id, UserId = selectedUser.Id };
 
-                try
+                if(Core.DB.UsersInSubjects.Any(u => u == newRelationship))
                 {
-                    Core.DB.UsersInSubjects.Add(newRelationship);
-                    Core.DB.SaveChanges();
-                }
-                catch
-                {
-                    MessageBox.Show("Не удалось добавить пользователя " + selectedUser.LastName + " " + selectedUser.FirstName + "!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    try
+                    {
+                        Core.DB.UsersInSubjects.Add(newRelationship);
+                        Core.DB.SaveChanges();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Не удалось добавить пользователя " + selectedUser.LastName + " " + selectedUser.FirstName + "!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                 }
             }
 

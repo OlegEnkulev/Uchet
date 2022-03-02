@@ -15,17 +15,23 @@
             <Label Content="Период до:" Foreground="White" Width="100" HorizontalContentAlignment="Right" Margin="5"/>
             <DatePicker x:Name="DateLastDatePicker" Margin="5"/>
             <Button Content="Обновить" Margin="5" x:Name="RefreshBTN" Click="RefreshBTN_Click"/>
+            <Button Content="Выход" Margin="5" x:Name="ExitBTN" Click="ExitBTN_Click"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Label Content="Предмет:" Foreground="White" Width="100" HorizontalContentAlignment="Right" Margin="5"/>
             <ComboBox x:Name="SubjectsBox" Margin="5" Width="100"/>
+            <Label x:Name="AverageGradeLabel" Content="Средняя оценка: ..." Foreground="White" Margin="5"/>
+            <Label x:Name="SkipsCountLabel" Content="Кол-во пропусков: ..." Foreground="White" Margin="5"/>
+            <Label x:Name="skipsUpCountLabel" Content="По УП: ..." Foreground="White" Margin="5"/>
+            <Label x:Name="skipsNeupCountLabel" Content="По НеУП: ..." Foreground="White" Margin="5"/>
         </StackPanel>
 
         <ScrollViewer Margin="5">
             <DataGrid x:Name="GradesDataGrid" Margin="5" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Предмет" Binding="{Binding Topics.Subjects.Name}" Width="200"/>
+                    <DataGridTextColumn Header="Топик" Binding="{Binding Topics.Name}" Width="200"/>
                     <DataGridTextColumn Header="Дата" Binding="{Binding Topics.Date}" Width="150"/>
                     <DataGridTextColumn Header="оценка" Binding="{Binding Grades.Name}" Width="200"/>
                 </DataGrid.Columns>

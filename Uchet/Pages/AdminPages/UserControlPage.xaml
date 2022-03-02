@@ -17,8 +17,8 @@
                     <DataGridTextColumn Header="Пароль" Width="150" Binding="{Binding Password}"/>
                     <DataGridTextColumn Header="Имя" Width="150" Binding="{Binding FirstName}"/>
                     <DataGridTextColumn Header="Фамилия" Width="150" Binding="{Binding LastName}"/>
-                    <DataGridComboBoxColumn Width="150" x:Name="RCB" Header="Роль" SelectedItemBinding="{Binding RoleId}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
-                    <DataGridComboBoxColumn Width="150" x:Name="GCB" Header="Группа" SelectedItemBinding="{Binding GroupId}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                    <DataGridComboBoxColumn Width="150" x:Name="RCB" Header="Роль" SelectedValueBinding="{Binding RoleId}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                    <DataGridComboBoxColumn Width="150" x:Name="GCB" Header="Группа" SelectedValueBinding="{Binding GroupID}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

@@ -52,5 +52,10 @@ namespace Uchet.Pages
         {
             Core.ExitUser();
         }
+
+        private void CheckGradesBTN_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherFrame.Navigate(new CheckGradesPage());
+        }
     }
 }

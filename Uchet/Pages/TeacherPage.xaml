@@ -14,7 +14,8 @@
             <Button Content="Предметы" x:Name="SubjectsBTN" Click="SubjectsBTN_Click" Margin="5"/>
             <Button Content="Топики" x:Name="TopicsBTN" Click="TopicsBTN_Click" Margin="5"/>
             <Button Content="Привязка студентов" x:Name="UsersTopicsBTN" Click="UsersTopicsBTN_Click" Margin="5"/>
-            <Button Content="Оценки" x:Name="GradesBTN" Click="GradesBTN_Click" Margin="5"/>
+            <Button Content="Оценки" x:Name="CheckGradesBTN" Click="CheckGradesBTN_Click" Margin="5"/>
+            <Button Content="Выставление оценок" x:Name="GradesBTN" Click="GradesBTN_Click" Margin="5"/>
             <Button Content="Выход" x:Name="Exit" Click="Exit_Click" Margin="5"/>
         </StackPanel>
         <Frame x:Name="TeacherFrame" HorizontalAlignment="Stretch" Height="350" Margin="5"/>
